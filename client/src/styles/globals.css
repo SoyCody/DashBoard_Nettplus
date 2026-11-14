@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nettplus-navy: #0A2A8F;
+  --nettplus-blue: #1F4BFF;
+  --nettplus-lime: #B4F000;
+  --nettplus-white: #FFFFFF;
+  --nettplus-ice: #EEF2FF;
+  --nettplus-red: #DC2626;
+  --nettplus-amber: #F59E0B;
+  font-family: Inter, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #0f172a;
+  background-color: #f8fafc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 1366px;
+  background: linear-gradient(180deg, #eef2ff 0%, #f8fafc 100%);
+  color: #0f172a;
+}
+
+@layer components {
+  .surface-card {
+    @apply rounded-xl border border-slate-200 bg-white shadow-soft;
+  }
+
+  .primary-button {
+    @apply inline-flex items-center justify-center rounded-lg bg-nettplus-blue px-4 py-2.5 text-sm font-medium text-white transition hover:bg-nettplus-navy focus:outline-none focus:ring-2 focus:ring-nettplus-blue/40;
+  }
+
+  .secondary-button {
+    @apply inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50;
+  }
+}
