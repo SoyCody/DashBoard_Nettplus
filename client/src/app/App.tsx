@@ -5,6 +5,8 @@ import { AuthProvider, useAuth, type AppRole } from '../features/auth/AuthContex
 import { LoginPage } from '../features/auth/LoginPage';
 import { DashboardPage } from '../features/dashboard/DashboardPage';
 import { UsersPage } from '../features/users/UsersPage';
+import { SettingsPage } from '../features/settings/SettingsPage';
+import { ImportPage } from '../features/import/ImportPage';
 
 function PlaceholderPage({ title, description }: { title: string; description: string }) {
   return (
@@ -62,12 +64,12 @@ function AppRoutes() {
           <Route element={<ProtectedShell />}>
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/importar" element={<RequireRole allowed={['asistente_rrhh', 'administrador']}><PlaceholderPage title="Importar" description="Se implementará la zona de carga y validación de .xlsx/.xls en la Fase 6." /></RequireRole>} />
+            <Route path="/importar" element={<RequireRole allowed={['asistente_rrhh', 'administrador']}><ImportPage /></RequireRole>} />
             <Route path="/historial" element={<RequireRole allowed={['asistente_rrhh', 'jefe_rrhh', 'administrador']}><PlaceholderPage title="Historial" description="Consulta de asistencia y novedades. Se habilitará en la Fase 8." /></RequireRole>} />
             <Route path="/resumen-diario" element={<RequireRole allowed={['asistente_rrhh', 'jefe_rrhh', 'administrador']}><PlaceholderPage title="Resumen diario" description="Vista consolidada por fecha y departamento. Se desarrollará en la Fase 9." /></RequireRole>} />
             <Route path="/reportes/mensual" element={<RequireRole allowed={['asistente_rrhh', 'jefe_rrhh', 'administrador']}><PlaceholderPage title="Reportes mensuales" description="Reporte consolidado con exportación Excel/PDF. Se implementará en la Fase 11." /></RequireRole>} />
             <Route path="/usuarios" element={<RequireRole allowed={['administrador']}><UsersPage /></RequireRole>} />
-            <Route path="/parametros" element={<RequireRole allowed={['administrador']}><PlaceholderPage title="Parámetros" description="Colaboradores, turnos, tolerancias e inactividad de sesión. Fase 5." /></RequireRole>} />
+            <Route path="/parametros" element={<RequireRole allowed={['administrador']}><SettingsPage /></RequireRole>} />
             <Route path="/auditoria" element={<RequireRole allowed={['administrador']}><PlaceholderPage title="Auditoría" description="Registro de accesos y cambios seguros. Fase 12." /></RequireRole>} />
             <Route path="/respaldos" element={<RequireRole allowed={['administrador']}><PlaceholderPage title="Respaldos" description="Copia automática diaria y catálogo de respaldos. Fase 12." /></RequireRole>} />
           </Route>

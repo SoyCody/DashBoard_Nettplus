@@ -1,0 +1,1 @@
+ALTER TABLE "turnos" ADD CONSTRAINT "turnos_nombre_unique" UNIQUE("nombre");

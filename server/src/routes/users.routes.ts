@@ -11,7 +11,7 @@ import { requirePermission, requireRole } from '../middlewares/role.middleware.j
 
 export const usersRouter = Router();
 
-usersRouter.use(authRequired, requireRole('administrador'));
+usersRouter.use(['/users', '/roles'], authRequired, requireRole('administrador'));
 usersRouter.get('/users', requirePermission('usuarios', 'ver'), listUsersController);
 usersRouter.get('/roles', requirePermission('usuarios', 'ver'), listRolesController);
 usersRouter.post('/users', requirePermission('usuarios', 'crear'), createUserController);

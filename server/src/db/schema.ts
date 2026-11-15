@@ -1,6 +1,7 @@
 import {
   boolean,
   integer,
+  index,
   jsonb,
   pgTable,
   primaryKey,
@@ -55,7 +56,7 @@ export const departamentos = pgTable('departamentos', {
 
 export const turnos = pgTable('turnos', {
   id: serial('id').primaryKey(),
-  nombre: varchar('nombre', { length: 80 }).notNull(),
+  nombre: varchar('nombre', { length: 80 }).notNull().unique(),
   horaEntrada: varchar('hora_entrada', { length: 10 }).notNull(),
   horaSalida: varchar('hora_salida', { length: 10 }).notNull(),
   diasLaborables: varchar('dias_laborables', { length: 30 }).notNull(),
@@ -94,7 +95,9 @@ export const importaciones = pgTable('importaciones', {
   omitidos: integer('omitidos').notNull().default(0),
   conErrores: integer('con_errores').notNull().default(0),
   estado: varchar('estado', { length: 30 }).notNull().default('pendiente'),
-});
+}, (table) => ({
+  fechaHoraIdx: index('importaciones_fecha_hora_idx').on(table.fechaHora),
+}));
 
 export const marcaciones = pgTable('marcaciones', {
   id: serial('id').primaryKey(),
@@ -107,7 +110,10 @@ export const marcaciones = pgTable('marcaciones', {
   tipo: varchar('tipo', { length: 20 }).notNull(),
   estado: varchar('estado', { length: 20 }).notNull().default('valido'),
   motivo: varchar('motivo', { length: 150 }),
-});
+}, (table) => ({
+  colaboradorFechaIdx: index('marcaciones_colaborador_fecha_idx').on(table.colaboradorId, table.fecha),
+  fechaIdx: index('marcaciones_fecha_idx').on(table.fecha),
+}));
 
 export const asistenciaDiaria = pgTable('asistencia_diaria', {
   colaboradorId: integer('colaborador_id')

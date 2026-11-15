@@ -19,6 +19,11 @@ const permissionSchema = z.object({
   exportar: z.boolean(),
 });
 
+const passwordSchema = z.string()
+  .min(8)
+  .max(128)
+  .refine((password) => Buffer.byteLength(password, 'utf8') <= 72, 'La contraseña no puede superar 72 bytes.');
+
 const userFields = {
   nombres: z.string().trim().min(1).max(100),
   apellidos: z.string().trim().min(1).max(100),
@@ -33,12 +38,12 @@ const userFields = {
 
 export const createUserSchema = z.object({
   ...userFields,
-  password: z.string().min(8).max(128),
+  password: passwordSchema,
 });
 
 export const updateUserSchema = z.object({
   ...userFields,
-  password: z.union([z.literal(''), z.string().min(8).max(128)]).optional(),
+  password: z.union([z.literal(''), passwordSchema]).optional(),
 });
 
 export const userStatusSchema = z.object({
