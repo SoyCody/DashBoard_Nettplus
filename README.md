@@ -83,6 +83,18 @@ Los cambios se validan en la API y se registran en auditoría. Los departamentos
 
 La pantalla `/importar` permite a Asistentes de RR.HH. y Administradores cargar archivos `.xls` o `.xlsx` de hasta 10 MB. La API valida tanto la extensión como la firma binaria y el contenido del libro; no confía en el nombre ni en el MIME enviado por el navegador. Antes de confirmar, valida las columnas `codigo`, `fecha`, `hora` y `tipo`, el período seleccionado, los colaboradores y las marcaciones duplicadas. La importación informa el avance de validación y guardado. El historial y la consulta de colaboradores usan paginación; las marcaciones tienen índices por colaborador/fecha y fecha. La plantilla incluye ejemplos: reemplaza `NET-1001` por el código de un colaborador registrado y usa `entrada` o `salida` como tipo. Las filas válidas se guardan; las duplicadas y las filas con errores se resumen y no se importan.
 
+## Historial de asistencia
+
+La pantalla `/historial` permite consultar asistencia consolidada por colaborador y fecha. Los roles Asistente de RR.HH., Jefe de RR.HH. y Administrador pueden usar filtros por rango de fechas, departamento, colaborador, estado y búsqueda. Los resultados usan paginación de servidor y muestran entrada, salida, minutos de atraso, estado y novedades pendientes.
+
+## Resumen diario
+
+La pantalla `/resumen-diario` consolida asistencia por fecha y departamento. Permite filtrar por rango de fechas y departamento, muestra totales de colaboradores, presentes, puntuales, atrasos, ausencias y minutos de atraso, y presenta resultados paginados por combinaciones de fecha y departamento.
+
+## Validación de marcaciones
+
+La pantalla `/validacion` permite a Asistentes de RR.HH. y Administradores revisar registros diarios marcados para revisión. Puede corregir estado, minutos de atraso y novedad, cerrar o mantener pendiente la revisión y guardar el cambio con auditoría antes/después.
+
 ## Verificación
 
 ```powershell

@@ -7,6 +7,9 @@ import { DashboardPage } from '../features/dashboard/DashboardPage';
 import { UsersPage } from '../features/users/UsersPage';
 import { SettingsPage } from '../features/settings/SettingsPage';
 import { ImportPage } from '../features/import/ImportPage';
+import { HistoryPage } from '../features/history/HistoryPage';
+import { DailySummaryPage } from '../features/daily-summary/DailySummaryPage';
+import { ValidationPage } from '../features/validation/ValidationPage';
 
 function PlaceholderPage({ title, description }: { title: string; description: string }) {
   return (
@@ -65,9 +68,9 @@ function AppRoutes() {
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/importar" element={<RequireRole allowed={['asistente_rrhh', 'administrador']}><ImportPage /></RequireRole>}/>
-            <Route path="/validacion" element={<RequireRole allowed={['asistente_rrhh', 'administrador']}><PlaceholderPage title="Validación de marcaciones" /></RequireRole>} />
-            <Route path="/historial"  element={<RequireRole allowed={['asistente_rrhh', 'jefe_rrhh', 'administrador']}><PlaceholderPage title="Historial" /></RequireRole>} />
-            <Route path="/resumen-diario" element={<RequireRole allowed={['asistente_rrhh', 'jefe_rrhh', 'administrador']}><PlaceholderPage title="Resumen diario" description="Vista consolidada por fecha y departamento. Se desarrollará en la Fase 9." /></RequireRole>} />
+            <Route path="/validacion" element={<RequireRole allowed={['asistente_rrhh', 'administrador']}><ValidationPage /></RequireRole>} />
+            <Route path="/historial"  element={<RequireRole allowed={['asistente_rrhh', 'jefe_rrhh', 'administrador']}><HistoryPage /></RequireRole>} />
+            <Route path="/resumen-diario" element={<RequireRole allowed={['asistente_rrhh', 'jefe_rrhh', 'administrador']}><DailySummaryPage /></RequireRole>} />
             <Route path="/reportes/mensual" element={<RequireRole allowed={['asistente_rrhh', 'jefe_rrhh', 'administrador']}><PlaceholderPage title="Reportes mensuales" description="Reporte consolidado con exportación Excel/PDF. Se implementará en la Fase 11." /></RequireRole>} />
             <Route path="/usuarios" element={<RequireRole allowed={['administrador']}><UsersPage /></RequireRole>} />
             <Route path="/parametros" element={<RequireRole allowed={['administrador']}><SettingsPage /></RequireRole>} />

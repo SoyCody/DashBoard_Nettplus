@@ -7,6 +7,7 @@ import { healthRouter } from './routes/health.routes.js';
 import { usersRouter } from './routes/users.routes.js';
 import { settingsRouter } from './routes/settings.routes.js';
 import { importRouter } from './routes/import.routes.js';
+import { historyRouter } from './routes/history.routes.js';
 import env from './config/env.js';
 
 export const app = express();
@@ -29,6 +30,7 @@ app.use('/api', authRouter);
 app.use('/api', usersRouter);
 app.use('/api', settingsRouter);
 app.use('/api', importRouter);
+app.use('/api', historyRouter);
 
 app.use((error: Error & { status?: number; statusCode?: number; type?: string }, _req: express.Request, res: express.Response, next: express.NextFunction) => {
   if (res.headersSent) {

@@ -6,6 +6,7 @@ import { auditoria, permisosUsuario, roles, usuarios } from '../db/schema.js';
 export const permissionModules = [
   { key: 'dashboard', label: 'Dashboard' },
   { key: 'importar', label: 'Importar' },
+  { key: 'validacion', label: 'Validación de marcaciones' },
   { key: 'historial', label: 'Historial' },
   { key: 'resumen_diario', label: 'Resumen diario' },
   { key: 'reportes_mensual', label: 'Reportes mensuales' },
@@ -34,7 +35,7 @@ const readOnly = (modulo: PermissionModule): Permission => ({
 
 export function defaultPermissionsForRole(role: string): Permission[] {
   const visibleModules: Record<string, PermissionModule[]> = {
-    asistente_rrhh: ['dashboard', 'importar', 'historial', 'resumen_diario', 'reportes_mensual'],
+    asistente_rrhh: ['dashboard', 'importar', 'validacion', 'historial', 'resumen_diario', 'reportes_mensual'],
     jefe_rrhh: ['dashboard', 'historial', 'resumen_diario', 'reportes_mensual'],
     administrador: permissionModules.map(({ key }) => key),
   };
