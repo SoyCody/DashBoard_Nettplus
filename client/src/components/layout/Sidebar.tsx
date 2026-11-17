@@ -6,7 +6,6 @@ import {
   FileSearch,
   History,
   LayoutDashboard,
-  ListChecks,
   ReceiptText,
   Users,
 } from 'lucide-react';
@@ -25,7 +24,6 @@ const sections: Array<{ title: string; items: MenuItem[] }> = [
     items: [
       { label: 'Dashboard de Indicadores', to: '/dashboard', icon: LayoutDashboard, roles: ALL },
       { label: 'Importar Z-BioTime', to: '/importar', icon: CloudUpload, roles: OPERATORS },
-      { label: 'Validación Marcaciones', to: '/validacion', icon: ListChecks, roles: OPERATORS },
       { label: 'Historial Asistencia', to: '/historial', icon: CalendarClock, roles: ALL },
       { label: 'Resumen Diario', to: '/resumen-diario', icon: CalendarDays, roles: ALL },
       { label: 'Reporte y Nómina', to: '/reportes/mensual', icon: ReceiptText, roles: ALL },
