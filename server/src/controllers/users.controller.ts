@@ -2,6 +2,7 @@ import type { NextFunction, Request, Response } from 'express';
 import { createUserSchema, updateUserSchema, userStatusSchema } from '../validators/user.schema.js';
 import { createUser, listRoles, listUsers, setUserStatus, updateUser, UserServiceError } from '../services/user.service.js';
 import type { AuthenticatedRequest } from '../middlewares/auth.middleware.js';
+import { positiveIdSchema } from '../validators/pagination.schema.js';
 
 function actorId(req: Request) {
   const id = (req as AuthenticatedRequest).user?.id;
@@ -49,8 +50,8 @@ export async function createUserController(req: Request, res: Response, next: Ne
 }
 
 export async function updateUserController(req: Request, res: Response, next: NextFunction) {
-  const userId = Number(req.params.id);
-  if (!Number.isSafeInteger(userId) || userId < 1) {
+  const parsedId = positiveIdSchema.safeParse(req.params.id);
+  if (!parsedId.success) {
     return res.status(400).json({ message: 'Identificador de usuario inválido' });
   }
   const parsed = updateUserSchema.safeParse(req.body);
@@ -59,7 +60,7 @@ export async function updateUserController(req: Request, res: Response, next: Ne
   }
 
   try {
-    const user = await updateUser(userId, parsed.data, actorId(req));
+    const user = await updateUser(parsedId.data, parsed.data, actorId(req));
     return res.status(200).json({ user });
   } catch (error) {
     return respondError(error, next, res);
@@ -67,8 +68,8 @@ export async function updateUserController(req: Request, res: Response, next: Ne
 }
 
 export async function setUserStatusController(req: Request, res: Response, next: NextFunction) {
-  const userId = Number(req.params.id);
-  if (!Number.isSafeInteger(userId) || userId < 1) {
+  const parsedId = positiveIdSchema.safeParse(req.params.id);
+  if (!parsedId.success) {
     return res.status(400).json({ message: 'Identificador de usuario inválido' });
   }
   const parsed = userStatusSchema.safeParse(req.body);
@@ -77,7 +78,7 @@ export async function setUserStatusController(req: Request, res: Response, next:
   }
 
   try {
-    const user = await setUserStatus(userId, parsed.data.estado, actorId(req));
+    const user = await setUserStatus(parsedId.data, parsed.data.estado, actorId(req));
     return res.status(200).json({ user });
   } catch (error) {
     return respondError(error, next, res);

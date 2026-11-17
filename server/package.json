@@ -13,6 +13,7 @@
     "db:permissions": "tsx src/db/sync-permissions.ts"
   },
   "dependencies": {
+    "@e965/xlsx": "^0.20.3",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
