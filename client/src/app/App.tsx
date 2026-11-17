@@ -64,8 +64,9 @@ function AppRoutes() {
           <Route element={<ProtectedShell />}>
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/importar" element={<RequireRole allowed={['asistente_rrhh', 'administrador']}><ImportPage /></RequireRole>} />
-            <Route path="/historial" element={<RequireRole allowed={['asistente_rrhh', 'jefe_rrhh', 'administrador']}><PlaceholderPage title="Historial" description="Consulta de asistencia y novedades. Se habilitará en la Fase 8." /></RequireRole>} />
+            <Route path="/importar" element={<RequireRole allowed={['asistente_rrhh', 'administrador']}><ImportPage /></RequireRole>}/>
+            <Route path="/validacion" element={<RequireRole allowed={['asistente_rrhh', 'administrador']}><PlaceholderPage title="Validación de marcaciones" /></RequireRole>} />
+            <Route path="/historial"  element={<RequireRole allowed={['asistente_rrhh', 'jefe_rrhh', 'administrador']}><PlaceholderPage title="Historial" /></RequireRole>} />
             <Route path="/resumen-diario" element={<RequireRole allowed={['asistente_rrhh', 'jefe_rrhh', 'administrador']}><PlaceholderPage title="Resumen diario" description="Vista consolidada por fecha y departamento. Se desarrollará en la Fase 9." /></RequireRole>} />
             <Route path="/reportes/mensual" element={<RequireRole allowed={['asistente_rrhh', 'jefe_rrhh', 'administrador']}><PlaceholderPage title="Reportes mensuales" description="Reporte consolidado con exportación Excel/PDF. Se implementará en la Fase 11." /></RequireRole>} />
             <Route path="/usuarios" element={<RequireRole allowed={['administrador']}><UsersPage /></RequireRole>} />

@@ -11,9 +11,9 @@ const roleLabels: Record<AppRole, string> = {
 
 export function AppShell({ user, onLogout }: { user: AuthUser; onLogout: () => void }) {
   return (
-    <div className="app-shell flex min-h-screen bg-slate-100">
+    <div className="app-shell flex min-h-screen bg-nettplus-canvas font-hanken">
       <Sidebar role={user.role} />
-      <div className="flex-1">
+      <div className="min-w-0 flex-1">
         <Topbar role={roleLabels[user.role]} userName={`${user.nombres} ${user.apellidos}`} onLogout={onLogout} />
         <main className="p-6">
           <Outlet />
